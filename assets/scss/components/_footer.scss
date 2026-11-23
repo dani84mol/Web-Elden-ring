@@ -1,0 +1,14 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.main-footer {
+    width: 100%;
+    text-align: center;
+    padding: 25px 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba($color-accent, 0.2);
+    margin-top: auto; 
+
+    @include desktop { padding: 30px; }
+    &__text { font-size: 0.8rem; margin: 0; }
+}

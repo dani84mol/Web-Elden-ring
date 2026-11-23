@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elden Ring - Clases</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/scss/Clases.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <div class="main-header__logo">
+                <img src="assets/index/Logo Elden Guide.png" alt="Logo Elden Ring Guide">
+                <span>ELDEN GUIDE</span>
+            </div>
+            
+            <ul class="main-header__list">
+                <li><a href="index.html" class="main-header__link">Inicio</a></li>
+                <li><a href="Jefes.html" class="main-header__link">Jefes</a></li>
+                <li><a href="Zonas.html" class="main-header__link">Zonas</a></li>
+                <li><a href="Consejos.html" class="main-header__link">Consejos</a></li>
+            </ul>
+
+            <div class="main-header__actions">
+                {{if .Usuario}}
+                    <span class="main-header__welcome">Hola, <strong>{{.Usuario}}</strong></span>
+                    <a href="/logout" class="main-header__link main-header__link--logout">Salir</a>
+                {{else}}
+                    <a href="login.html" class="main-header__link">Login</a>
+                    <a href="registro.html" class="main-header__link main-header__link--highlight">Registro</a>
+                {{end}}
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        <section class="hero">
+            <article class="hero__content">
+                <h1 class="hero__title">Elige tu Origen</h1>
+                <p class="hero__flavor">"Sin luz, pero con el destino escrito en las estrellas..."</p>
+                <div class="hero__description">
+                    <p>Tu origen define tu equipo inicial y el camino de tus habilidades. Selecciona con sabiduría.</p>
+                </div>
+                <a href="#encuesta" class="btn-encuesta">Consultar al Oráculo</a>
+            </article>
+        </section>
+
+        <section class="gallery">
+            <article class="gallery__item"><a href="#astrologo" class="gallery__link"><img src="assets/Clases/Astrologo.png" alt="Astrólogo" class="gallery__img"></a></article>
+            <article class="gallery__item"><a href="#bandido" class="gallery__link"><img src="assets/Clases/Bandido.png" alt="Bandido" class="gallery__img"></a></article>
+            <article class="gallery__item"><a href="#confesor" class="gallery__link"><img src="assets/Clases/Confesor.png" alt="Confesor" class="gallery__img"></a></article>
+            <article class="gallery__item"><a href="#guerrero" class="gallery__link"><img src="assets/Clases/Guerrero.png" alt="Guerrero" class="gallery__img"></a></article>
+            <article class="gallery__item"><a href="#heroe" class="gallery__link"><img src="assets/Clases/Heroe.png" alt="Héroe" class="gallery__img"></a></article>
+            <article class="gallery__item"><a href="#miserable" class="gallery__link"><img src="assets/Clases/Miserable.png" alt="Miserable" class="gallery__img"></a></article>
+            <article class="gallery__item"><a href="#prisionero" class="gallery__link"><img src="assets/Clases/Prisionero.png" alt="Prisionero" class="gallery__img"></a></article>
+            <article class="gallery__item"><a href="#profeta" class="gallery__link"><img src="assets/Clases/Profeta.png" alt="Profeta" class="gallery__img"></a></article>
+            <article class="gallery__item"><a href="#samurai" class="gallery__link"><img src="assets/Clases/Samurai.png" alt="Samurái" class="gallery__img"></a></article>
+            <article class="gallery__item"><a href="#vagante" class="gallery__link"><img src="assets/Clases/Vagante.png" alt="Vagante" class="gallery__img"></a></article>
+        </section>
+
+        <section class="modals-container">
+            <article id="astrologo" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Astrólogo</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="astrologo">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "astrologo"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="astrologo"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/AtrologoInv.jpg" alt="Equipamiento inicial del Astrólogo" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Build: Maestro del Cometa (Inteligencia) Hechicería pura de larga distancia.</ol>
+                        <ol>Armadura: Corona de Piedra de Brillo de Azur + Set de Hechicero.</ol>
+                        <ol>Armas: Bastón de Piedra de Brillo de Lusat + Espada de Santa Trina.</ol>
+                        <ol>Talismanes: Masa de Amalgama de Magos, Icono de Radagon, Reliquia del astronomo.</ol>
+                        <ol>Vial de Médica: Lágrima de Cristal de Manto Azul (maná infinito 10s) + Lágrima Rota por Magia.</ol>
+                        <ol>Invocación: Lhutel la Sin Cabeza (tanquea mientras disparas).</ol>
+                    </p>
+
+                </div>
+            </article>
+
+            <article id="bandido" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Bandido</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="bandido">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "bandido"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="bandido"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/BandidoInv.jpg" alt="Retrato del Bandido" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Build: Asesino de Sangre y Veneno (Arcano) Especialista en estados alterados y dagas.</ol>
+                        <ol>Armadura: Máscara Blanca + Set de Cuchillo Negro.</ol>
+                        <ol>Armas: Daga Reduvia + Daga de Gran Escorpión (Podredumbre).</ol>
+                        <ol>Talismanes: Exaltación del Señor de la Sangre, Exaltación del Adepto de la Putrefacción, Amuleto de Escorpión de Fuego.</ol>
+                        <ol>Vial de Médica: Lágrima de Cristal de Sangre + Lágrima de Cristal de Nudo Destreza.</ol>
+                        <ol>Invocación: Lágrima Mimética.</ol>
+                    </p>
+
+                </div>
+            </article>
+
+            <article id="confesor" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Confesor</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="confesor">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "confesor"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="confesor"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/ConfesorInv.jpg" alt="Retrato del Confesor" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Build: Paladín del Orden Dorado (Fuerza/Fe) Especialista en supervivencia y daño sagrado.</ol>
+                        <ol>Armadura: Set de Caballero de Haligtree.</ol>
+                        <ol>Armas: Espada Blasfemia + Escudo de Árbol Áureo.</ol>
+                        <ol>Talismanes: Talismán de Escudo con Blasón de Dragón, Amuleto de Escorpión Sagrado, Icono de Radagon.</ol>
+                        <ol>Vial de Médica: Lágrima Envolvente Sagrada + Lágrima de Cristal de Burbuja.</ol>
+                        <ol>Invocación: Tiche, la Cuchillo Negro.</ol>
+
+                    </p>
+                </div>
+            </article>
+
+            <article id="guerrero" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Guerrero</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="guerrero">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "guerrero"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="guerrero"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/GuerreroInv.jpg" alt="Retrato del Guerrero" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Build: Danza de Espadas (Destreza Pura) Aprovecha la alta destreza inicial para ataques rápidos y sucesivos.</ol>
+                        <ol>Armadura: Set de Ave de Rapiña (potencia ataques en salto).</ol>
+                        <ol>Armas: Dos Cimitarras de Bandido con afinidad Rayo o Afilada.</ol>
+                        <ol>Talismanes: Insignia de Espada Alada Podrida, Prótesis de Millicent, Talismán de Garra.</ol>
+                        <ol>Vial de Médica: Lágrima Rota Espinosa (daño por ataques sucesivos) + Lágrima Envolvente de Rayo.</ol>
+                        <ol>Invocación: Tiche, la Cuchillo Negro.</ol>
+                    </p>
+                </div>
+            </article>
+
+            <article id="heroe" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Héroe</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="heroe">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "heroe"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="heroe"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/HeroeInv.jpg" alt="Retrato del Héroe" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Build: El Bárbaro de Salto (Fuerza/Vigor) Usa el poder bruto para aplastar enemigos de un solo golpe.</ol>
+                        <ol>Armadura: Set de Campeón (o cualquier armadura pesada con estética bárbara).</ol>
+                        <ol>Armas: Dos Martillos de Gigante (Dual Wield).</ol>
+                        <ol>Talismanes: Favor del Árbol Áureo +2, Gran Tarro de Arsenal, Talismán de Garra.</ol>
+                        <ol>Vial de Médica: Lágrima de Cristal de Fuerza + Lágrima de Cristal de Nudo de Vigor.</ol>
+                        <ol>Invocación: Oleg, caballero desterrado.</ol>
+                    </p>
+                </div>
+            </article>
+
+            <article id="prisionero" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Prisionero</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="prisionero">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "prisionero"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="prisionero"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/PrisioneroInv.jpg" alt="Retrato del Prisionero" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Build: Caballero Mágico (Inteligencia/Destreza) Combina hechizos rápidos con estocadas letales.</ol>
+                        <ol>Armadura: Máscara de Hierro de Prisionero + Armadura de Caballero Real (Loretta).</ol>
+                        <ol>Armas: Hoz de guerra de Loretta + Bastón de Cariano.</ol>
+                        <ol>Talismanes: Hoja de Centelleo de Cariano, Prótesis de Millicent, Escudo con Blasón de Dragón.</ol>
+                        <ol>Vial de Médica: Lágrima Rota por Magia + Lágrima de Cristal de Destreza.</ol>
+                        <ol>Invocación: Caballero de la Melena Roja Ogha.</ol>
+                    </p>
+                </div>
+            </article>
+
+            <article id="profeta" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Profeta</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="profeta">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "profeta"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="profeta"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/ProfetaInv.jpg" alt="Retrato del Profeta" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Build: Heraldo de la Llama Frenética (Fe) Utiliza el fuego y la locura para quemar el mundo.</ol>
+                        <ol>Armadura: Máscara de Hierro de Dumire + Set de Huellas de Dedos.</ol>
+                        <ol>Armas: Lanza de Vyke + Sello de la Llama Frenética.</ol>
+                        <ol>Talismanes: Lienzo del Rebaño, Amuleto de Escorpión de Fuego, Icono de Godfrey.</ol>
+                        <ol>Vial de Médica: Lágrima Envolvente de Llama + Lágrima de Cristal de Burbuja Opalescente.</ol>
+                        <ol>Invocación: Finlay, caballera de la Putrefacción.</ol>
+                    </p>
+                </div>
+            </article>
+
+            <article id="samurai" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Samurai</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="samurai">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "samurai"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="samurai"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/SamuraiInv.jpg" alt="Retrato del Samurái" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Build: Ronin del Hielo y Sangre (Destreza/Inteligencia) Híbrido que utiliza la congelación y el sangrado.</ol>
+                        <ol>Armadura: Set de Ronin (de Yura).</ol>
+                        <ol>Armas: Velo Lunar (Moonveil) + Uchigatana Gélida.</ol>
+                        <ol>Talismanes: Fragmento de Alexander, Cuerno de Espíritu Ancestral (recupera PC), Amuleto de Escorpión Mágico.</ol>
+                        <ol>Vial de Médica: Lágrima Rota por Magia + Lágrima de Cristal de Fuerza Verde.</ol>
+                        <ol>Invocación: Lágrima Mimética (con arco equipado para apoyo).</ol>
+                    </p>
+                </div>
+            </article>
+
+            <article id="vagante" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Vagante</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="vagante">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "vagante"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="vagante"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/VaganteInv.jpg" alt="Retrato del Vagante" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Build: El Tanque de Postura (Fuerza Pura) Se centra en romper la guardia del enemigo y realizar críticos masivos.</ol>
+                        <ol>Armadura: Set de Solitario (DLC) o Set de Toro-Cabrito.</ol>
+                        <ol>Armas: Espadón de Hoja Injertada o Espadón (Guts) con Ceniza de Guerra "Rugido de León".</ol>
+                        <ol>Talismanes: Talismán de la Daga, Talismán de Gran Escudo de Blasón de Dragón, Fragmento de Alexander.</ol>
+                        <ol>Vial de Médica: Lágrima de Cristal de Fuerza + Lágrima rota de Piedra (para romper postura).</ol>
+                        <ol>Invocación: Engvall, caballero del Crisol.</ol>
+                    </p>
+                    
+                </div>
+            </article>
+
+            <article id="miserable" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <div class="modal-css__header-fav">
+                        <h2 class="modal-css__title">Miserable</h2>
+                        
+                        {{/* Solo si el usuario está asociado (ha iniciado sesión) */}}
+                        {{if .Usuario}}
+                                <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                    <input type="hidden" name="clase_id" value="miserable">
+                                    <button type="submit" class="fav-btn {{if index .Favoritos "miserable"}}is-active{{end}}">
+                                        <span class="fav-icon">✧</span>
+                                    </button>
+                                </form>
+                        {{else}}
+                            <form action="/toggle-favorito" method="POST" style="display:inline;">
+                                <input type="hidden" name="clase_id" value="miserable"> <button type="submit" class="fav-btn" title="Inicia sesión para favoritos">
+                                    <span class="fav-icon">✧</span>
+                                </button>
+                            </form>
+                        {{end}}
+                    </div>
+                    <img src="assets/Clases/MiserableInv.jpg" alt="Retrato del Miserable" class="modal-css__img">
+                    <p class="modal-css__text">
+                        <ol>Al gusto de la persona. Este personaje es la forma personificada de personalizar a gusto el personaje al maximo</ol>
+                    </p>
+                </div>
+            </article>
+
+            <article id="encuesta" class="modal-css">
+                <div class="modal-css__content modal-css__content--survey" style="max-height: 90vh; overflow-y: auto;">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Oráculo de Gracia</h2>
+                    
+                    <form action="/recomendar-clase#encuesta" method="POST" class="form-clase">
+                        
+                        <div class="form-clase__section">
+                            <p class="form-clase__question">1. ¿Cómo prefieres enfrentarte a tus enemigos en combate?</p>
+                            <div class="form-clase__grid" style="display: flex; flex-direction: column; gap: 10px;">
+                                <label class="form-clase__option"><input type="radio" name="p1" value="A" required><span>A) Me lanzo de frente, absorbiendo el daño con un escudo.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p1" value="B"><span>B) Me muevo rápido, esquivando y atacando sin parar.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p1" value="C"><span>C) A puros golpes devastadores con armas gigantes.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p1" value="D"><span>D) Atacando desde lejos de forma segura con magia/fuego.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p1" value="E"><span>E) Desde las sombras, usando sigilo y golpes críticos.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p1" value="F"><span>F) Como sea, con lo primero que encuentre tirado.</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-clase__section">
+                            <p class="form-clase__question">2. Si tuvieras que depender de un solo atributo para sobrevivir, ¿cuál sería?</p>
+                            <div class="form-clase__grid" style="display: flex; flex-direction: column; gap: 10px;">
+                                <label class="form-clase__option"><input type="radio" name="p2" value="A" required><span>A) Gran vitalidad y armadura pesada.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p2" value="B"><span>B) Pura fuerza bruta.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p2" value="C"><span>C) Mucha destreza, reflejos y precisión.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p2" value="D"><span>D) Inteligencia superior para conjurar hechizos.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p2" value="E"><span>E) Fe inquebrantable para invocar el poder divino.</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-clase__section">
+                            <p class="form-clase__question">3. ¿Te gusta mezclar la magia con el combate cuerpo a cuerpo?</p>
+                            <div class="form-clase__grid" style="display: flex; flex-direction: column; gap: 10px;">
+                                <label class="form-clase__option"><input type="radio" name="p3" value="A" required><span>A) No, soy 100% de ataques físicos y acero.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p3" value="B"><span>B) No, prefiero quedarme lejos siendo un lanzador puro.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p3" value="C"><span>C) Sí, espada rápida con hechizos de apoyo.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p3" value="D"><span>D) Sí, cuerpo a cuerpo pero apoyado por curaciones.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p3" value="E"><span>E) No sé ni qué es la magia.</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-clase__section">
+                            <p class="form-clase__question">4. ¿Qué arma secundaria te hace sentir más seguro?</p>
+                            <div class="form-clase__grid" style="display: flex; flex-direction: column; gap: 10px;">
+                                <label class="form-clase__option"><input type="radio" name="p4" value="A" required><span>A) Un arco para atraer enemigos a distancia.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p4" value="B"><span>B) Dos espadas a la vez para duplicar el daño.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p4" value="C"><span>C) Un escudo de metal impenetrable.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p4" value="D"><span>D) Un báculo o un sello sagrado.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p4" value="E"><span>E) Un hacha para romper la postura del enemigo.</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-clase__section">
+                            <p class="form-clase__question">5. Si fracasas y mueres constantemente, ¿por qué crees que sería?</p>
+                            <div class="form-clase__grid" style="display: flex; flex-direction: column; gap: 10px;">
+                                <label class="form-clase__option"><input type="radio" name="p5" value="A" required><span>A) Me faltó protección o me quedé sin energía.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p5" value="B"><span>B) Fui muy lento esquivando el ataque.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p5" value="C"><span>C) El enemigo se me acercó demasiado.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p5" value="D"><span>D) No equilibré bien mis hechizos con mi arma.</span></label>
+                                <label class="form-clase__option"><input type="radio" name="p5" value="E"><span>E) ¡Por nada! Yo busco la mayor dificultad posible.</span></label>
+                            </div>
+                        </div>
+
+                        <div class="form-clase__footer">
+                            <button type="submit" class="form-clase__submit">DESCUBRIR MI DESTINO</button>
+                        </div>
+                    </form>
+
+                    <form action="/recomendar-clase#encuesta" method="POST" class="form-clase">
+                        </form>
+
+                    {{if .ResultadoOraculo}}
+                    <div id="resultado-oraculo" style="text-align: center; font-size: 1.4em; font-weight: bold; color: #c5a86a; padding: 15px; border: 1px solid #c5a86a; margin-top: 20px; border-radius: 5px; background: rgba(0,0,0,0.5);">
+                        ¡El Oráculo ha hablado!<br>
+                        Tu clase perfecta es: <a href="#{{.ResultadoId}}" style="color: #fff; text-decoration: underline;">{{.ResultadoOraculo}}</a>
+                    </div>
+                    {{end}}
+
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p class="main-footer__text">&copy; 2026 - Elden Guide</p>
+    </footer>
+</body>
+</html>

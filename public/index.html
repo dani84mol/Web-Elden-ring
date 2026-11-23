@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elden Ring - Guía para Principiantes</title>
+    <link rel="stylesheet" href="assets/scss/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Spectral:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <div class="main-header__logo">
+                <img src="assets/index/Logo Elden Guide.png" alt="Logo Elden Ring Guide">
+                <span>ELDEN GUIDE</span>
+            </div>
+            
+            <ul class="main-header__list">
+                <li><a href="Clases.html" class="main-header__link">Clases</a></li>
+                <li><a href="Jefes.html" class="main-header__link">Jefes</a></li>
+                <li><a href="Zonas.html" class="main-header__link">Zonas</a></li>
+                <li><a href="Consejos.html" class="main-header__link">Consejos</a></li>
+            </ul>
+
+            <div class="main-header__actions">
+                {{if .Usuario}}
+                    <span class="main-header__welcome">Hola, <strong>{{.Usuario}}</strong></span>
+                    <a href="/logout" class="main-header__link main-header__link--logout">Salir</a>
+                {{else}}
+                    <a href="login.html" class="main-header__link">Login</a>
+                    <a href="registro.html" class="main-header__link main-header__link--highlight">Registro</a>
+                {{end}}
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        
+        <section class="hero">
+            <article class="hero__content">
+                <h1 class="hero__title">
+                    {{if .Usuario}}
+                        Bienvenido {{.Usuario}} a Elden Guide
+                    {{else}}
+                        Bienvenido a Elden Guide
+                    {{end}}
+                </h1>
+                <p class="hero__flavor">"Sin luz, pero con el corazón lleno de valor..."</p>
+                
+                <div class="hero__description">
+                    <p>¡Hola, aventurero! Estás listo para embarcarte en una épica aventura...</p>
+                    <p>En esta guía encontrarás todo lo necesario para sobrevivir en las Tierras Intermedias.</p>
+                    <p class="hero__highlight">¡Que la gracia te acompañe!</p>
+                </div>
+            </article>
+        </section>
+                    
+        <section class="navigation-grid">
+        
+            <article class="navigation-grid__card" data-title="ELEGIR CLASE">
+                <a href="Clases.html" class="navigation-grid__link navigation-grid__link--clases">
+                    <img src="assets/index/Clases.png" alt="Ver Clases" class="navigation-grid__img">
+                </a>
+            </article>
+
+            <article class="navigation-grid__card" data-title="EXPLORAR ZONAS">
+                <a href="Zonas.html" class="navigation-grid__link navigation-grid__link--zonas">
+                    <img src="assets/index/Zonas.png" alt="Ver Zonas" class="navigation-grid__img">
+                </a>
+            </article>
+
+            <article class="navigation-grid__card" data-title="DERROTAR JEFES">
+                <a href="Jefes.html" class="navigation-grid__link navigation-grid__link--jefes">
+                    <img src="assets/index/Jefes.png" alt="Ver Jefes" class="navigation-grid__img">
+                </a>
+            </article>
+
+            <article class="navigation-grid__card" data-title="GUÍA Y CONSEJOS">
+                <a href="Consejos.html" class="navigation-grid__link navigation-grid__link--consejos">
+                    <img src="assets/index/Consejos.png" alt="Ver Consejos" class="navigation-grid__img">
+                </a>
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p class="main-footer__text">&copy; 2026 - Elden Guide</p>
+    </footer>
+
+</body>
+</html>

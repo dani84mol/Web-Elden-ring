@@ -1,0 +1,145 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+@use 'base/reset';
+@use 'components/header';
+@use 'components/footer';
+
+/* ==========================================
+   LAYOUT & HERO
+   ========================================== */
+.page-container {
+    padding: 20px; display: flex; flex-direction: column; flex: 1;
+    @include desktop { flex-direction: row; max-width: 1400px; margin: 0 auto; gap: 40px; }
+}
+
+.hero {
+    text-align: center; margin-bottom: 20px;
+    @include desktop {
+        flex: 0 0 350px; text-align: left; padding: 40px;
+        border-right: 1px solid rgba($color-accent, 0.2);
+        position: sticky; top: 100px; height: fit-content;
+    }
+    &__title { font-family: $font-heading; font-size: 1.8rem; color: $color-light; margin: 0; @include desktop { font-size: 2rem; } }
+    &__flavor { font-style: italic; color: $color-flavor; }
+}
+
+/* ==========================================
+   ZONE GRID & MODALES
+   ========================================== */
+.zone-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px;
+    @include desktop { flex: 1; grid-template-columns: repeat(4, 1fr); padding: 40px; gap: 20px; }
+
+    &__item {
+        display: flex; justify-content: center; align-items: center;
+        @include desktop {
+            &:last-child:nth-child(odd) { grid-column: 2 / span 2; justify-self: center; width: 100%; max-width: calc((100% / 2) - 10px); }
+        }
+    }
+    &__img {
+        width: 100%; height: auto; display: block;
+        filter: sepia(20%) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.7));
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+        @include desktop {
+            .zone-grid__item:nth-child(4n+1) & { transform: rotate(-4deg); }
+            .zone-grid__item:nth-child(4n+2) & { transform: rotate(2deg); }
+            .zone-grid__item:nth-child(4n+3) & { transform: rotate(-2deg); }
+            .zone-grid__item:nth-child(4n+4) & { transform: rotate(5deg); }
+        }
+    }
+    &__link {
+        display: block; text-decoration: none; width: 100%;
+        @include desktop {
+            &:hover .zone-grid__img { transform: scale(1.1) rotate(0deg) !important; filter: sepia(0%) brightness(1.1) drop-shadow(0 15px 20px rgba(0, 0, 0, 0.9)); z-index: 100; position: relative; }
+        }
+    }
+}
+
+.modal-css {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); z-index: 10000;
+    &:target { display: flex; justify-content: center; align-items: center; }
+
+    &__content {
+        background-color: $bg-dark; border: 1px solid $color-accent; overflow-y: auto; position: relative;
+        box-shadow: 0 0 30px rgba($color-accent, 0.2); width: 95%; padding: 45px 15px 20px; max-height: 85vh;
+        @include desktop { width: 90%; max-width: 700px; padding: 40px 30px; }
+    }
+    &__close {
+        position: absolute; color: $color-accent; text-decoration: none; top: 5px; right: 15px; font-size: 3.5rem; z-index: 10005;
+        @include desktop { top: 10px; right: 20px; font-size: 3rem; }
+    }
+    &__title { font-family: $font-heading; color: $color-light; text-align: center; margin-bottom: 20px; }
+    
+    &__grid { 
+        display: grid; grid-template-columns: 1fr; gap: 15px; 
+        @include desktop { grid-template-columns: repeat(2, 1fr); gap: 20px; } 
+    }
+    
+    // 1. EL FORMULARIO ES AHORA EL ITEM DEL GRID
+    .card-form {
+        display: flex;
+        width: 100%;
+        
+        @include desktop {
+            &:last-child:nth-child(odd) { 
+                grid-column: 1 / span 2; 
+                justify-self: center; 
+                width: 100%; 
+                max-width: calc(50% - 10px); 
+            }
+        }
+    }
+
+    // 2. LA TARJETA (BOTÓN) SE ADAPTA AL FORMULARIO
+    &__card {
+        background-color: rgba(0, 0, 0, 0.4); border: 1px solid rgba($color-accent, 0.3); border-radius: 8px;
+        padding: 10px; display: flex; align-items: center; gap: 15px; transition: all 0.2s ease;
+        
+        // Propiedades adaptadas para que funcione como un botón clickeable
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        position: relative;
+        font-family: inherit;
+
+        @include desktop {
+            flex-direction: column; text-align: left;
+        }
+        
+        // Solo hace el efecto Hover si NO está deshabilitado (cuando sí hay sesión activa)
+        &:hover:not(:disabled) { 
+            transform: translateY(-5px); border-color: $color-light; 
+        }
+
+        // --- ESTADO OBTENIDO (Apagado) ---
+        &.is-obtained {
+            filter: grayscale(100%) brightness(0.5);
+            border-color: rgba($color-accent, 0.1);
+            opacity: 0.6;
+
+            &:hover:not(:disabled) {
+                filter: grayscale(0%) brightness(0.8);
+                opacity: 0.9;
+            }
+        }
+        
+        &-img { width: 80px; height: 80px; flex-shrink: 0; object-fit: contain; border: 1px solid rgba($color-accent, 0.2); background-color: rgba(0, 0, 0, 0.5); @include desktop { width: 100%; height: 120px; } }
+        &-text { color: $color-light; font-size: 0.85rem; @include desktop { font-size: 0.9rem; } strong { color: $color-accent; } }
+    }
+}
+
+// El icono de check para los objetos conseguidos
+.card-check {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: $color-accent;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(0,0,0,0.8);
+    @include desktop {
+        top: 5px;
+        right: 10px;
+    }
+}

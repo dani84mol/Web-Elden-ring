@@ -1,0 +1,157 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+@use 'base/reset';
+@use 'components/header';
+@use 'components/footer';
+
+/* ==========================================
+   LAYOUT & HERO
+   ========================================== */
+.page-container {
+    padding: 20px; flex: 1;
+    @include mid-layout { display: flex; flex-direction: row; max-width: 1400px; margin: 0 auto; gap: 30px; }
+}
+
+.hero {
+    text-align: center; padding-bottom: 20px;
+    @include mid-layout {
+        flex: 0 0 350px; text-align: left; padding: 40px;
+        border-right: 1px solid rgba($color-accent, 0.2);
+        position: sticky; top: 100px; height: fit-content;
+    }
+    &__title { font-family: $font-heading; font-size: 1.8rem; color: $color-light; margin: 0; }
+    &__flavor { font-style: italic; color: $color-flavor; }
+}
+
+/* ==========================================
+   BOSS GRID & MODALES
+   ========================================== */
+.boss-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px 0;
+    @include mid-layout { flex: 1; grid-template-columns: repeat(4, 1fr); padding: 40px; gap: 20px; }
+
+    &__item {
+        display: flex; justify-content: center; align-items: center;
+        @include mobile {
+            &:last-child:nth-child(odd) { grid-column: 1 / span 2; justify-self: center; width: 50%; padding: 0 5px; }
+        }
+        @include mid-layout {
+            &:last-child:nth-child(odd) { grid-column: 2 / span 2; justify-self: center; width: 50%; max-width: none; }
+        }
+    }
+
+    &__link {
+        display: block; width: 100%; text-decoration: none;
+        position: relative; /* ¡CLAVE! Hace que la X se contenga dentro de la imagen */
+        
+        &:hover .boss-grid__img {
+            @include mid-layout { transform: scale(1.1) rotate(0deg) !important; filter: sepia(0%) brightness(1.1); border-color: $color-light; z-index: 100; position: relative; }
+        }
+    }
+
+    &__img {
+        width: 100%; height: 180px; object-fit: cover; display: block;
+        border: 1px solid rgba($color-accent, 0.3); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        filter: sepia(20%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+        @include mid-layout {
+            height: auto;
+            .boss-grid__item:nth-child(4n+1) & { transform: rotate(-4deg); }
+            .boss-grid__item:nth-child(4n+2) & { transform: rotate(2deg); }
+            .boss-grid__item:nth-child(4n+3) & { transform: rotate(-2deg); }
+            .boss-grid__item:nth-child(4n+4) & { transform: rotate(5deg); }
+        }
+
+        /* Clase modificadora para el jefe derrotado */
+        &--defeated {
+            filter: grayscale(100%) brightness(0.4) !important; // !important asegura que no cambie al hacer hover
+            border-color: #ff4d4d;
+        }
+    }
+
+    /* Estilo para la X roja sobre el jefe derrotado */
+    &__mark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Lo centra matemáticamente de forma exacta */
+        color: #ff1a1a;
+        font-family: $font-heading;
+        font-size: 5rem;
+        font-weight: bold;
+        text-shadow: 0 0 20px black, 0 0 10px rgba(255, 26, 26, 0.5);
+        pointer-events: none; /* Evita que la X bloquee el clic hacia el modal */
+        z-index: 5;
+    }
+}
+
+.modal-css {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); z-index: 10000;
+    &:target { display: flex; justify-content: center; align-items: center; }
+
+    &__content {
+        background-color: $bg-dark; padding: 50px 20px 25px; border: 1px solid $color-accent;
+        width: 95%; max-height: 85vh; overflow-y: auto; position: relative; 
+        display: grid; grid-template-areas: "title" "image" "text"; gap: 20px;
+        @include mid-layout {
+            width: 90%; max-width: 800px; padding: 40px 35px;
+            grid-template-columns: 1fr 1fr; grid-template-areas: "title title" "image text"; gap: 30px;
+        }
+    }
+    &__close {
+        position: absolute; top: 5px; right: 15px; color: $color-accent;
+        font-size: 3.5rem; text-decoration: none; line-height: 1;
+        @include mid-layout { font-size: 2.8rem; }
+    }
+    &__title { grid-area: title; font-family: $font-heading; text-align: center; }
+    &__img { grid-area: image; width: 100%; max-height: 250px; object-fit: contain; @include mid-layout { max-height: 60vh; } }
+    &__text, &__list { grid-area: text; font-size: 0.95rem; padding-left: 15px; @include mid-layout { font-size: 1.05rem; } }
+}
+
+/* ==========================================
+   BOTÓN Y ACCIONES DE JEFE MUERTO
+   ========================================== */
+.btn-muerto {
+    background-color: transparent;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    padding: 15px 25px;
+    width: 100%;
+    font-family: $font-heading;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    &:hover {
+        background-color: #ff4d4d;
+        color: #1a1510;
+        box-shadow: 0 0 20px rgba(255, 77, 77, 0.4);
+    }
+}
+
+.modal-css__actions {
+    border-top: 1px solid rgba($color-accent, 0.2);
+    margin-top: 15px;
+}
+
+.btn-revivir {
+    background-color: transparent;
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    padding: 15px 25px;
+    width: 100%;
+    font-family: $font-heading;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    &:hover {
+        background-color: $color-accent;
+        color: $bg-dark;
+        box-shadow: 0 0 20px rgba($color-accent, 0.4);
+    }
+}

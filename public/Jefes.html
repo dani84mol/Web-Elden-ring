@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elden Ring - Jefes de Leyenda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/scss/Jefes.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <div class="main-header__logo">
+                <img src="assets/index/Logo Elden Guide.png" alt="Logo Elden Ring Guide">
+                <span>ELDEN GUIDE</span>
+            </div>
+            
+            <ul class="main-header__list">
+                <li><a href="index.html" class="main-header__link">Inicio</a></li>
+                <li><a href="Clases.html" class="main-header__link">Clases</a></li>
+                <li><a href="Zonas.html" class="main-header__link">Zonas</a></li>
+                <li><a href="Consejos.html" class="main-header__link">Consejos</a></li>
+            </ul>
+
+            <div class="main-header__actions">
+                {{if .Usuario}}
+                    <span class="main-header__welcome">Hola, <strong>{{.Usuario}}</strong></span>
+                    <a href="/logout" class="main-header__link main-header__link--logout">Salir</a>
+                {{else}}
+                    <a href="login.html" class="main-header__link">Login</a>
+                    <a href="registro.html" class="main-header__link main-header__link--highlight">Registro</a>
+                {{end}}
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        <section class="hero">
+            <article class="hero__content">
+                <h1 class="hero__title">Desafía a las Leyendas</h1>
+                <p class="hero__flavor">"Aquellos que una vez fueron grandes, ahora solo son sombras..."</p>
+                <div class="hero__description">
+                    <p>En las Tierras Intermedias, el poder se arrebata de las manos de aquellos que han perdido el juicio bajo el peso de las Grandes Runas.</p>
+                    <p>Prepárate para los encuentros más feroces de tu viaje.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="boss-grid">
+            <article class="boss-grid__item"><a href="#margit" class="boss-grid__link"><img src="assets/Jefes/Margit.png" alt="Margit, el Augurio Caído" class="boss-grid__img {{if index .Derrotados "margit"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "margit"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#godrick" class="boss-grid__link"><img src="assets/Jefes/Godrick.png" alt="Godrick el Injertado" class="boss-grid__img {{if index .Derrotados "godrick"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "godrick"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#lobo" class="boss-grid__link"><img src="assets/Jefes/Lobo Rojo.png" alt="Lobo Rojo" class="boss-grid__img {{if index .Derrotados "lobo"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "lobo"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#rennala" class="boss-grid__link"><img src="assets/Jefes/Rennala.png" alt="Rennala, Reina de la Luna Llena" class="boss-grid__img {{if index .Derrotados "rennala"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "rennala"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#centinela" class="boss-grid__link"><img src="assets/Jefes/Centinela Agreste.png" alt="Centinela Agreste" class="boss-grid__img {{if index .Derrotados "centinela"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "centinela"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#morgott" class="boss-grid__link"><img src="assets/Jefes/Morgott.png" alt="Morgott, rey de los Augurios" class="boss-grid__img {{if index .Derrotados "morgott"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "morgott"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#gigante" class="boss-grid__link"><img src="assets/Jefes/Gigante De Fuego.png" alt="Gigante de Fuego" class="boss-grid__img {{if index .Derrotados "gigante"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "gigante"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#sacrodermo" class="boss-grid__link"><img src="assets/Jefes/Duo Sacrodermo.png" alt="Dúo Sacrodermo" class="boss-grid__img {{if index .Derrotados "sacrodermo"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "sacrodermo"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#maliketh" class="boss-grid__link"><img src="assets/Jefes/Maliketh.png" alt="Maliketh, la Hoja Negra" class="boss-grid__img {{if index .Derrotados "maliketh"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "maliketh"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#gideon" class="boss-grid__link"><img src="assets/Jefes/Sir Gideon.png" alt="Sir Gideon Ofnir" class="boss-grid__img {{if index .Derrotados "gideon"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "gideon"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#godfrey" class="boss-grid__link"><img src="assets/Jefes/Godfrey.png" alt="Godfrey, primer Señor del Círculo" class="boss-grid__img {{if index .Derrotados "godfrey"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "godfrey"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#radagon" class="boss-grid__link"><img src="assets/Jefes/Radagon.png" alt="Radagon de la Orden Dorada" class="boss-grid__img {{if index .Derrotados "radagon"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "radagon"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>
+            <article class="boss-grid__item"><a href="#bestia" class="boss-grid__link"><img src="assets/Jefes/Bestia Del Circulo.png" alt="Bestia del Círculo" class="boss-grid__img {{if index .Derrotados "bestia"}}boss-grid__img--defeated{{end}}">{{if index .Derrotados "bestia"}}<div class="boss-grid__mark">X</div>{{end}}</a></article>        
+        </section>
+
+        <section class="modals-container">
+
+            <article id="margit" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Margit, el Augurio Caído</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Preparación:</strong> Usa los Grilletes de Margit para inmovilizarlo dos veces en la primera fase.</li>
+                        <li><strong>Invocaciones:</strong> Las Cenizas de Lobo Solitario y el PNJ Rogier son ideales para dividir su atención.</li>
+                        <li><strong>Estrategia:</strong> Esquiva hacia él para quedar en su espalda. Usa ataques de salto para romper su postura.</li>
+                        <ul>Fase 2</ul>
+                        <li>Mucho cuidado con sus ataques de martillo de luz; mantén la paciencia y ataca solo en ventanas claras.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "margit"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="margit"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="margit"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Margit.png" alt="Margit" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="godrick" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Godrick el Injertado</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Posicionamiento:</strong> Mantente cerca para que sus ataques sean más fáciles de predecir.</li>
+                        <li><strong>Combate:</strong> Ataca su lado derecho (el del arma) y evita sus torbellinos de viento.</li>
+                        <li><strong>Área:</strong> Aléjate rápido cuando golpee el suelo para evitar las ondas de choque sucesivas.</li>
+                        <ul>Fase 2</ul>
+                        <li>Rueda hacia su izquierda cuando use el fuego del dragón. Mantén la presión de cerca para evitar su agarre.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "godrick"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="godrick"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="godrick"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Godrick.png" alt="Godrick" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="lobo" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Lobo Rojo</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Estrategia:</strong> Es extremadamente rápido pero frágil. Prioriza esquivar hacia la derecha antes que cubrirte.</li>
+                        <li><strong>Invocaciones:</strong> Las cenizas de perro callejero son útiles para causar hemorragia constante.</li>
+                        <li><strong>Defensa:</strong> Usa equipo con resistencia mágica alta para mitigar sus proyectiles de luz.</li>
+                        <li><strong>Ataque Clave:</strong> Esquiva lateralmente justo cuando la lanza de luz se dirija hacia ti.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "lobo"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="lobo"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="lobo"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Lobo Rojo.png" alt="Lobo Rojo" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="rennala" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Rennala, Reina de la Luna Llena</h2>
+                    <ul class="modal-css__list">
+                        <ul>Fase 1</ul>
+                        <li>Golpea a los niños con aura dorada para romper su escudo. Atácala con todo al caer.</li>
+                        <ul>Fase 2</ul>
+                        <li>Sé agresivo para interrumpir su magia. Los Lobos Solitarios son excelentes para distraerla.</li>
+                        <li><strong>Equipo:</strong> Usa armadura de alta resistencia mágica. Ignora sus invocaciones y corre directo a ella.</li>
+                        <li><strong>Rayo:</strong> Cuando cargue su rayo de energía, rueda lateralmente de forma constante.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "rennala"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="rennala"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="rennala"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Rennala.png" alt="Rennala" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="centinela" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Centinela Agreste (Capital)</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Preparación:</strong> El veneno y la podredumbre roja son muy efectivos contra él.</li>
+                        <li><strong>Invocaciones:</strong> La Lágrima Mimética o Tiche son ideales. Puedes invocar al PNJ "Tragoth el Gran Cuerno" cerca de la entrada.</li>
+                        <li><strong>Estrategia:</strong> En donde no tiene el escudo para evitar sus ataques de golpe de escudo.</li>
+                        <ul>Fase 2</ul>
+                        <li>Cuidado con sus ataques de rayo. Cuando levante el arma, prepárate para rodar justo cuando el rayo caiga del cielo.</li>
+                        <li><strong>Escudo:</strong> No lances hechizos cuando su escudo brille, ya que los devolverá con un proyectil de luz muy potente.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "centinela"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="centinela"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="centinela"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Centinela Agreste.png" alt="Centinela Agreste" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="morgott" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Morgott, Rey de los Augurios</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Movilidad:</strong> Esquiva hacia el frente para posicionarte tras él. Sus combos tienen ligeros retrasos.</li>
+                        <li><strong>Objetos:</strong> Aún puedes usar los Grilletes de Margit dos veces durante su primera fase.</li>
+                        <li><strong>Ayuda:</strong> Melina puede ser invocada fuera de la niebla; su curación y daño son fundamentales.</li>
+                        <ul>Fase 2</ul>
+                        <li>Cuidado con la explosión de área cuando tosa. Mantén la distancia frente a su lanza y lluvia de espadas.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "morgott"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="morgott"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="morgott"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Morgott.png" alt="Morgott" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="gigante" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Gigante de Fuego</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Debilidad:</strong> Ataca a la venda hasta romperlo.</li>
+                        <li><strong>Movilidad:</strong> Usa a Torrentera para cerrar distancias y huir.</li>
+                        <li><strong>Ayuda:</strong> Alexander puede ser invocado si seguiste su misión.</li>
+                        <ul>Fase 2</ul>
+                        <li><strong>Estrategia:</strong> Golpea sus manos o mantente tras sus piernas.</li>
+                        <li><strong>Fuego:</strong> Activa los orbes lentos y huye antes de que exploten.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "gigante"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="gigante"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="gigante"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Gigante De Fuego.png" alt="Gigante de Fuego" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="sacrodermo" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Dúo Sacrodermo</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Debilidad:</strong> El sueño es su mayor debilidad. Usa frascos para dormir a ambos y pelear uno a uno.</li>
+                        <li><strong>Prioridad:</strong> Elimina primero al Noble (el gordo) para evitar sus ataques de rodamiento.</li>
+                        <li><strong>Entorno:</strong> Usa las columnas para bloquear las bolas de fuego y los ataques de carga.</li>
+                        <li><strong>Tanque:</strong> El PNJ Bernahl es una invocación muy resistente que facilita enormemente el combate.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "sacrodermo"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="sacrodermo"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="sacrodermo"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Duo Sacrodermo.png" alt="Dúo Sacrodermo" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="maliketh" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Maliketh, la Hoja Negra</h2>
+                    <ul class="modal-css__list">
+                        <ul>Fase 1</ul>
+                        <li>Esquiva hacia él para evitar sus ataques de tierra. Cúbrete tras los pilares contra sus rocas.</li>
+                        <ul>Fase 2</ul>
+                        <li>Sé agresivo. Su barra de vida es pequeña, pero sus golpes drenan tu salud máxima.</li>
+                        <li><strong>Objeto Especial:</strong> La Garra Blasfema permite hacer parry a sus ataques de espada brillante.</li>
+                        <li><strong>Hemorragia:</strong> Es vulnerable al sangrado; usa grasas o armas de este tipo para acelerar la pelea.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "maliketh"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="maliketh"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="maliketh"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Maliketh.png" alt="Maliketh" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="gideon" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Sir Gideon Ofnir</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Ataque:</strong> Atácalo sin piedad mientras habla al inicio para quitarle mucha vida.</li>
+                        <li><strong>Presión:</strong> Mantente pegado a él; si le das espacio, te acribillará a hechizos.</li>
+                        <li><strong>Debilidad:</strong> Es muy vulnerable al sangrado y a los ataques de salto que cortan sus magias.</li>
+                        
+                        <ul>Estrategia</ul>
+                        <li><strong>Defensa:</strong> Usa equipo con alta resistencia mágica para aguantar sus ráfagas de luz.</li>
+                        <li><strong>Invocación:</strong> La Lágrima Mimética lo anula por completo al no dejarle respirar.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "gideon"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="gideon"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="gideon"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Sir Gideon.png" alt="Sir Gideon Ofnir" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="godfrey" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Godfrey / Hoarah Loux</h2>
+                    <ul class="modal-css__list">
+                        <ul>Fase 1</ul>
+                        <li> Salta para evitar sus pisotones de área. Sus hachazos son lentos y fáciles de castigar.</li>
+                        <li><strong>Posicionamiento:</strong> Esquiva hacia él para quedar en su espalda tras sus combos largos.</li>
+                        <ul>Fase 2</ul>
+                        <li>Se vuelve una bestia de agarres. No huyas para curarte; rueda a través de sus intentos de abrazo.</li>
+                        <li><strong>Estrategia:</strong> La Lágrima Mimética es ideal para mantener su agresividad bajo control.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "godfrey"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="godfrey"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="godfrey"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Godfrey.png" alt="Godfrey" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="radagon" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Radagon de la Orden Dorada</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Esquiva:</strong> Rueda hacia él, nunca hacia atrás para evitar el área del martillo.</li>
+                        <li><strong>Salto:</strong> Salta cuando golpee el suelo para esquivar las ondas de choque doradas.</li>
+                        <li><strong>Defensa:</strong> Usa el Talismán de dracofuego sagrado +2 para mitigar casi todo su daño.</li>
+                        
+                        <ul>Estrategia</ul>
+                        <li><strong>Debilidad:</strong> Es vulnerable al fuego y al daño por postura. Usa ataques pesados.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "radagon"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="radagon"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="radagon"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Radagon.png" alt="Radagon" class="modal-css__img">
+                </div>
+            </article>
+
+            <article id="bestia" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close">&times;</a>
+                    <h2 class="modal-css__title">Bestia del Círculo</h2>
+                    <ul class="modal-css__list">
+                        <li><strong>Movilidad:</strong> Corre hacia ella constantemente; evita que se aleje demasiado.</li>
+                        <li><strong>Anillos:</strong> Salta sobre los anillos dorados para evitar la explosión final.</li>
+                        <li><strong>Vientre:</strong> Golpea la grieta brillante en su pecho para daño máximo.</li>
+                        
+                        <ul>Estrategia</ul>
+                        <li><strong>Inmunidad:</strong> No uses daño sagrado, se cura con él. Usa solo daño físico.</li>
+                    </ul>
+                    {{if .Usuario}}
+                    <div class="modal-css__actions">
+                        {{if index .Derrotados "bestia"}}
+                            <form action="/revivir-jefe" method="POST"><input type="hidden" name="jefe_id" value="bestia"><button type="submit" class="btn-revivir">DEVOLVER A LA VIDA (GRACIA)</button></form>
+                        {{else}}
+                            <form action="/marcar-muerto" method="POST"><input type="hidden" name="jefe_id" value="bestia"><button type="submit" class="btn-muerto">MARCAR COMO MUERTO Y SIGUIENTE</button></form>
+                        {{end}}
+                    </div>
+                    {{end}}
+                    <img src="assets/Jefes/Bestia Del Circulo.png" alt="Bestia del Círculo" class="modal-css__img">
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p class="main-footer__text">&copy; 2026 - Elden Guide</p>
+    </footer>
+</body>
+</html>

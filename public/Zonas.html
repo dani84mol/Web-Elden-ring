@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elden Ring - Regiones de las Tierras Intermedias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/scss/Zonas.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <div class="main-header__logo">
+                <img src="assets/index/Logo Elden Guide.png" alt="Logo Elden Ring Guide">
+                <span>ELDEN GUIDE</span>
+            </div>
+            
+            <ul class="main-header__list">
+                <li><a href="index.html" class="main-header__link">Inicio</a></li>
+                <li><a href="Clases.html" class="main-header__link">Clases</a></li>
+                <li><a href="Jefes.html" class="main-header__link">Jefes</a></li>
+                <li><a href="Consejos.html" class="main-header__link">Consejos</a></li>
+            </ul>
+
+            <div class="main-header__actions">
+                {{if .Usuario}}
+                    <span class="main-header__welcome">Hola, <strong>{{.Usuario}}</strong></span>
+                    <a href="/logout" class="main-header__link main-header__link--logout">Salir</a>
+                {{else}}
+                    <a href="login.html" class="main-header__link">Login</a>
+                    <a href="registro.html" class="main-header__link main-header__link--highlight">Registro</a>
+                {{end}}
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        <section class="hero">
+            <article class="hero__content">
+                <h1 class="hero__title">Tierras Intermedias</h1>
+                <p class="hero__flavor">"Un vasto mundo quebrado, esperando a su nuevo Señor..."</p>
+                <div class="hero__description">
+                    <p>Desde las costas doradas de Necrolimbo hasta las cumbres heladas de los Gigantes, cada región esconde secretos, peligros y fragmentos del Círculo de Elden.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="zone-grid">
+            <article class="zone-grid__item"><a href="#necrolimbo" class="zone-grid__link"><img src="assets/Zonas/Imagenes Mapa/Necrolimbo.png" alt="Necrolimbo" class="zone-grid__img"></a></article>
+            <article class="zone-grid__item"><a href="#liurnia" class="zone-grid__link"><img src="assets/Zonas/Imagenes Mapa/Liurnia.png" alt="Liurnia" class="zone-grid__img"></a></article>
+            <article class="zone-grid__item"><a href="#caelid" class="zone-grid__link"><img src="assets/Zonas/Imagenes Mapa/Caelid.png" alt="Caelid" class="zone-grid__img"></a></article>
+            <article class="zone-grid__item"><a href="#altus" class="zone-grid__link"><img src="assets/Zonas/Imagenes Mapa/Altus.png" alt="Meseta de Altus" class="zone-grid__img"></a></article>
+            <article class="zone-grid__item"><a href="#leyndell" class="zone-grid__link"><img src="assets/Zonas/Imagenes Mapa/Leyndell.png" alt="Leyndell" class="zone-grid__img"></a></article>
+            <article class="zone-grid__item"><a href="#pico" class="zone-grid__link"><img src="assets/Zonas/Imagenes Mapa/Pico_tormentoso.png" alt="Monte Gelmir" class="zone-grid__img"></a></article>
+            <article class="zone-grid__item"><a href="#gigantes" class="zone-grid__link"><img src="assets/Zonas/Imagenes Mapa/Pico.png" alt="Pico de los Gigantes" class="zone-grid__img"></a></article>
+            <article class="zone-grid__item"><a href="#farum" class="zone-grid__link"><img src="assets/Zonas/Imagenes Mapa/Farum Azula.png" alt="Farum Azula" class="zone-grid__img"></a></article>
+        </section>
+
+        <section class="modals-container">
+            <article id="necrolimbo" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close" aria-label="Cerrar">&times;</a>
+                    <h2 class="modal-css__title">Necrolimbo</h2>
+                    <div class="modal-css__grid">
+                        
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="uchigatana">
+                            <input type="hidden" name="zona_id" value="necrolimbo">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "uchigatana"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/uchigatana.jpg" alt="Uchigatana" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Uchigatana:</strong> En las Catacumbas mortuorias.</p>
+                                {{if index .Obtenidos "uchigatana"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="reduvia">
+                            <input type="hidden" name="zona_id" value="necrolimbo">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "reduvia"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/reduvia.jpg" alt="Reduvia" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Reduvia:</strong> Derrotando al invasor Nerijus en el río.</p>
+                                {{if index .Obtenidos "reduvia"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="talisman_garra">
+                            <input type="hidden" name="zona_id" value="necrolimbo">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "talisman_garra"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/talisman-con-garra.jpg" alt="Talismán de Garra" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Talismán de Garra:</strong> En lo alto de una torre en Velo Tormentoso.</p>
+                                {{if index .Obtenidos "talisman_garra"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="lhutel">
+                            <input type="hidden" name="zona_id" value="necrolimbo">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "lhutel"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/lhutel-la-decapitada.jpg" alt="Lhutel la Sin Cabeza" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Lhutel la Sin Cabeza:</strong> Derrotando al jefe de las Catacumbas del Empalamiento.</p>
+                                {{if index .Obtenidos "lhutel"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="oleg">
+                            <input type="hidden" name="zona_id" value="necrolimbo">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "oleg"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/caballero-proscrito-oleg.jpg" alt="Oleg, caballero desterrado" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Oleg, caballero desterrado:</strong> Recompensa en la Tumba del héroe de los confines.</p>
+                                {{if index .Obtenidos "oleg"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="cimitarra_bandido_necro">
+                            <input type="hidden" name="zona_id" value="necrolimbo">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "cimitarra_bandido_necro"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/espada-curva-de-bandido.jpg" alt="Cimitarra de Bandido" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Cimitarra de Bandido:</strong> Se puede farmear de esqueletos en el Cementerio de Necrolimbo.</p>
+                                {{if index .Obtenidos "cimitarra_bandido_necro"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="lagrima_piedra">
+                            <input type="hidden" name="zona_id" value="necrolimbo">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "lagrima_piedra"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/lagrima-rota-con-puntas-de-piedra.jpg" alt="Lágrima rota de Piedra" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Lágrima rota de Piedra:</strong> Árbol Áureo de Colina de la Niebla (Necrolimbo Este).</p>
+                                {{if index .Obtenidos "lagrima_piedra"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+               
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="lagrima_mimetica">
+                            <input type="hidden" name="zona_id" value="necrolimbo">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "lagrima_mimetica"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/lagrima-mimetica.jpg" alt="Lágrima Mimética" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Lágrima Mimética: </strong>En un cofre en la Ciudad Eterna de Nokron.</p>
+                                {{if index .Obtenidos "lagrima_mimetica"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </article>
+
+            <article id="liurnia" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close" aria-label="Cerrar">&times;</a>
+                    <h2 class="modal-css__title">Liurnia de los Lagos</h2>
+                    <div class="modal-css__grid">
+                        
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="tiche">
+                            <input type="hidden" name="zona_id" value="liurnia">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "tiche"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/tiche-la-cuchillo-negro.jpg" alt="Tiche, la Cuchillo Negro" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Tiche, la Cuchillo Negro:</strong> Derrotando a Alecto en la Cárcel Eterna de los Líderes.</p>
+                                {{if index .Obtenidos "tiche"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="lanza_vyke">
+                            <input type="hidden" name="zona_id" value="liurnia">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "lanza_vyke"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/lanza-de-guerra-de-vyke.jpg" alt="Lanza de Vyke" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Lanza de Vyke:</strong> Recompensa por derrotar al invasor Vyke en la Iglesia de la Inhibición.</p>
+                                {{if index .Obtenidos "lanza_vyke"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="icono_radagon">
+                            <input type="hidden" name="zona_id" value="liurnia">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "icono_radagon"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/icono-de-radagon.jpg" alt="Icono de Radagon" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Icono de Radagon:</strong> En un cofre en el segundo piso del Salón de Debates de Raya Lucaria.</p>
+                                {{if index .Obtenidos "icono_radagon"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="baston_cariano">
+                            <input type="hidden" name="zona_id" value="liurnia">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "baston_cariano"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/baston-de-piedra-refulgente-cariano.jpg" alt="Bastón de Cariano" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Bastón de Cariano:</strong> En un cadáver en la Academia de Raya Lucaria, cerca de la Iglesia del Cuco.</p>
+                                {{if index .Obtenidos "baston_cariano"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="cimitarra_bandido_liur">
+                            <input type="hidden" name="zona_id" value="liurnia">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "cimitarra_bandido_liur"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/espada-curva-de-bandido.jpg" alt="Cimitarra de Bandido" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Cimitarra de Bandido:</strong> También puede farmearse en los alrededores de la Iglesia del Juramento.</p>
+                                {{if index .Obtenidos "cimitarra_bandido_liur"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="daga_escorpion">
+                            <input type="hidden" name="zona_id" value="liurnia">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "daga_escorpion"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/aguijon-de-escorpion.jpg" alt="Daga de Gran Escorpión" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Daga de Gran Escorpión:</strong> En un cofre en el Claustro de la Putrefacción.</p>
+                                {{if index .Obtenidos "daga_escorpion"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="lagrimas_envolventes">
+                            <input type="hidden" name="zona_id" value="liurnia">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "lagrimas_envolventes"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/lagrima-rota-de-dote-magico.jpg" alt="Lágrimas Envolventes" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Lágrimas Envolventes (Sagrada/Fuego/Rayo):</strong> Se obtienen de los Avatares en Liurnia y Caelid.</p>
+                                {{if index .Obtenidos "lagrimas_envolventes"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </article>
+
+            <article id="caelid" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close" aria-label="Cerrar">&times;</a>
+                    <h2 class="modal-css__title">Caelid</h2>
+                    <div class="modal-css__grid">
+                        
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="espadon_guts">
+                            <input type="hidden" name="zona_id" value="caelid">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "espadon_guts"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/espadon.jpg" alt="Espadón (Guts)" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Espadón (Guts):</strong> Dentro de un cofre en un carruaje en Caelid.</p>
+                                {{if index .Obtenidos "espadon_guts"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="rugido_leon">
+                            <input type="hidden" name="zona_id" value="caelid">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "rugido_leon"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/ceniza-de-guerra-garra-de-leon.jpg" alt="Rugido de León" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Rugido de León:</strong> Se obtiene al derrotar al León Guardián en el Castillo de Melena Roja.</p>
+                                {{if index .Obtenidos "rugido_leon"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="engvall">
+                            <input type="hidden" name="zona_id" value="caelid">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "engvall"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/caballero-proscrito-engvall.jpg" alt="Engvall" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Engvall:</strong> Recompensa por completar las Catacumbas de los Muertos en Guerra.</p>
+                                {{if index .Obtenidos "engvall"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="baston_lusat">
+                            <input type="hidden" name="zona_id" value="caelid">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "baston_lusat"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/baston-de-piedra-refulgente-de-lusat.jpg" alt="Bastón de Lusat" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Bastón de Lusat:</strong> En un cofre en Sellia, Ciudad de la Hechicería.</p>
+                                {{if index .Obtenidos "baston_lusat"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="espada_trina">
+                            <input type="hidden" name="zona_id" value="caelid">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "espada_trina"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/espada-de-santa-trina.jpg" alt="Espada de Santa Trina" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Espada de Santa Trina:</strong> En las Ruinas de los Renegados.</p>
+                                {{if index .Obtenidos "espada_trina"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="gran_tarro">
+                            <input type="hidden" name="zona_id" value="caelid">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "gran_tarro"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/arsenal-del-gran-tarro.jpg" alt="Gran Tarro de Arsenal" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Gran Tarro de Arsenal:</strong> Se consigue al superar el desafío del Coliseo de Caelid.</p>
+                                {{if index .Obtenidos "gran_tarro"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="velo_lunar">
+                            <input type="hidden" name="zona_id" value="caelid">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "velo_lunar"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/velo-lunar.jpg" alt="Velo Lunar (Moonveil)" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Velo Lunar (Moonveil):</strong> Recompensa por derrotar al Dragón de Magma en el Túnel de Gael.</p>
+                                {{if index .Obtenidos "velo_lunar"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="mascara_blanca">
+                            <input type="hidden" name="zona_id" value="caelid">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "mascara_blanca"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/mascara-blanca.jpg" alt="Máscara Blanca" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Máscara Blanca:</strong> Al matar a los invasores en el Palacio de Mohgwyn.</p>
+                                {{if index .Obtenidos "mascara_blanca"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </article>
+
+            <article id="altus" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close" aria-label="Cerrar">&times;</a>
+                    <h2 class="modal-css__title">Meseta de Altus</h2>
+                    <div class="modal-css__grid">
+                        
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="set_ave_rapaz">
+                            <input type="hidden" name="zona_id" value="altus">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "set_ave_rapaz"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/plumas-negras-de-ave-rapaz.jpg" alt="Set de Ave de Rapiña" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Set de Ave de Rapiña:</strong> Ubicado en la Cueva del Sabio, detrás de paredes ilusorias.</p>
+                                {{if index .Obtenidos "set_ave_rapaz"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="icono_godfrey">
+                            <input type="hidden" name="zona_id" value="altus">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "icono_godfrey"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/icono-de-godfrey.jpg" alt="Icono de Godfrey" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Icono de Godfrey:</strong> Se obtiene al derrotar a Godefroy el Injertado en la Cárcel Eterna del Linaje.</p>
+                                {{if index .Obtenidos "icono_godfrey"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </article>
+
+            <article id="leyndell" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close" aria-label="Cerrar">&times;</a>
+                    <h2 class="modal-css__title">Leyndell, Capital Real</h2>
+                    <div class="modal-css__grid">
+                        
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="martillo_gigante">
+                            <input type="hidden" name="zona_id" value="leyndell">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "martillo_gigante"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/aplastagigantes.jpg" alt="Martillo de Gigante" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Martillo de Gigante:</strong> En un cofre en un carruaje en las Afueras de la Capital.</p>
+                                {{if index .Obtenidos "martillo_gigante"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="escudo_aureo">
+                            <input type="hidden" name="zona_id" value="leyndell">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "escudo_aureo"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/escudo-grande-del-arbol-aureo.jpg" alt="Escudo de Árbol Áureo" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Escudo de Árbol Áureo:</strong> Recompensa por derrotar a los dos Centinelas Agrestes.</p>
+                                {{if index .Obtenidos "escudo_aureo"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="exaltacion_sangre">
+                            <input type="hidden" name="zona_id" value="leyndell">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "exaltacion_sangre"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/exaltacion-del-senor-de-la-sangre.jpg" alt="Exaltación del Señor de la Sangre" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Exaltación del Señor de la Sangre:</strong> Se obtiene derrotando a Esgar en las Catacumbas de Leyndell.</p>
+                                {{if index .Obtenidos "exaltacion_sangre"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="favor_aureo">
+                            <input type="hidden" name="zona_id" value="leyndell">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "favor_aureo"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/favor-del-arbol-aureo-2.jpg" alt="Favor del Árbol Áureo +2" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Favor del Árbol Áureo +2:</strong> En la zona de ceniza de Leyndell al final del juego.</p>
+                                {{if index .Obtenidos "favor_aureo"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </article>
+
+            <article id="pico" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close" aria-label="Cerrar">&times;</a>
+                    <h2 class="modal-css__title">Monte Gelmir</h2>
+                    <div class="modal-css__grid">
+                        
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="set_toro_cabrito">
+                            <input type="hidden" name="zona_id" value="pico">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "set_toro_cabrito"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/armadura-de-taurocabra.jpg" alt="Set de Toro-Cabrito" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Set de Toro-Cabrito:</strong> Se consigue completando la misión de Parches.</p>
+                                {{if index .Obtenidos "set_toro_cabrito"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="lagrima_azul">
+                            <input type="hidden" name="zona_id" value="pico">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "lagrima_azul"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/lagrima-oculta-cerulea.jpg" alt="Lágrima de Manto Azul" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Lágrima de Manto Azul:</strong> Se encuentra en el Árbol Áureo del Monte Gelmir.</p>
+                                {{if index .Obtenidos "lagrima_azul"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </article>
+
+            <article id="gigantes" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close" aria-label="Cerrar">&times;</a>
+                    <h2 class="modal-css__title">Pico de los Gigantes</h2>
+                    <div class="modal-css__grid">
+                        
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="set_ronin">
+                            <input type="hidden" name="zona_id" value="gigantes">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "set_ronin"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/set-ronnin.png" alt="Set de Ronin" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Set de Ronin:</strong> Lo suelta Shabriri o al completar la misión de Yura.</p>
+                                {{if index .Obtenidos "set_ronin"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="masa_magos">
+                            <input type="hidden" name="zona_id" value="gigantes">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "masa_magos"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/talisman-de-gran-amalgama-de-magos.jpg" alt="Masa de Amalgama de Magos" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Masa de Amalgama de Magos:</strong> En la Torre de Albinauric, en el Campo de Nieve Consagrado.</p>
+                                {{if index .Obtenidos "masa_magos"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="set_cuchillo_negro">
+                            <input type="hidden" name="zona_id" value="gigantes">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "set_cuchillo_negro"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/armadura-de-cuchillo-negro.jpg" alt="Set de Cuchillo Negro" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Set de Cuchillo Negro:</strong> Bajo un arco en el pueblo de Ordina.</p>
+                                {{if index .Obtenidos "set_cuchillo_negro"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </article>
+
+            <article id="farum" class="modal-css">
+                <div class="modal-css__content">
+                    <a href="#" class="modal-css__close" aria-label="Cerrar">&times;</a>
+                    <h2 class="modal-css__title">Farum Azula, la Ciudad Desmoronada</h2>
+                    <div class="modal-css__grid">
+                        
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="talisman_dragon">
+                            <input type="hidden" name="zona_id" value="farum">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "talisman_dragon"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/talisman-de-escudo-grande-con-blason-de-dragon.jpg" alt="Talismán de Gran Escudo de Blasón de Dragón" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Talismán de Gran Escudo de Blasón de Dragón:</strong> En un cofre en Elphael, Árbol Hierático.</p>
+                                {{if index .Obtenidos "talisman_dragon"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="finlay">
+                            <input type="hidden" name="zona_id" value="farum">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "finlay"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/caballera-imputrescible-finlay.jpg" alt="Finlay" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Finlay:</strong> En un cofre en Elphael, custodiado por un Caballero de la Putrefacción.</p>
+                                {{if index .Obtenidos "finlay"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="hoz_loretta">
+                            <input type="hidden" name="zona_id" value="farum">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "hoz_loretta"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/hoz-de-guerra-de-loretta.jpg" alt="Hoz de guerra de Loretta" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Hoz de guerra de Loretta:</strong> Recompensa por derrotar a Loretta en el Árbol Hierático.</p>
+                                {{if index .Obtenidos "hoz_loretta"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="armadura_loretta">
+                            <input type="hidden" name="zona_id" value="farum">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "armadura_loretta"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/armadura-de-la-caballera-real.jpg" alt="Armadura de Caballero Real" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Armadura de Caballero Real:</strong> Se compra a Enia tras derrotar a Loretta.</p>
+                                {{if index .Obtenidos "armadura_loretta"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                        <form action="/toggle-objeto" method="POST" class="card-form">
+                            <input type="hidden" name="objeto_id" value="set_haligtree">
+                            <input type="hidden" name="zona_id" value="farum">
+                            <button type="submit" class="modal-css__card {{if index .Obtenidos "set_haligtree"}}is-obtained{{end}}" {{if not .Usuario}}disabled title="Inicia sesión para marcar progresos"{{end}}>
+                                <img src="assets/Zonas/Imagenes Objetos/set-de-caballero-de-haligtree.jpg" alt="Set de Caballero de Haligtree" class="modal-css__card-img">
+                                <p class="modal-css__card-text"><strong>Set de Caballero de Haligtree:</strong> Los soldados y caballeros en Elphael lo sueltan.</p>
+                                {{if index .Obtenidos "set_haligtree"}}<div class="card-check">✔</div>{{end}}
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <p class="main-footer__text">&copy; 2026 - Elden Guide</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,139 @@
+/* IMPORTAR BASE */
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+@use 'base/reset';
+@use 'components/header';
+@use 'components/footer';
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh; // Asegura que ocupe gran parte de la pantalla
+    padding: 40px 20px;
+    align-items: center;
+
+    @include desktop {
+        flex-direction: row;
+        justify-content: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 60px; // Espacio entre hero y login
+    }
+}
+
+.hero {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 40px;
+
+    @include desktop {
+        text-align: left;
+        flex: 1;
+        margin-bottom: 0;
+        border-right: 1px solid rgba($color-accent, 0.2);
+        padding-right: 50px;
+    }
+
+    &__title {
+        font-family: $font-heading;
+        font-size: 2.2rem;
+        color: $color-highlight;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    &__flavor {
+        font-family: $font-body;
+        color: $color-flavor;
+        font-style: italic;
+        font-size: 1.1rem;
+    }
+
+    &__error {
+        margin-top: 35px;
+        padding: 15px 25px;
+        color: $color-highlight;
+        background: linear-gradient(90deg, transparent 0%, $color-error-bg 50%, transparent 100%);
+        border-top: 1px solid rgba($color-error, 0.6);
+        border-bottom: 1px solid rgba($color-error, 0.6);
+        font-family: $font-body;
+        text-align: center;
+    }
+}
+
+.login-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.login-box {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba($color-accent, 0.3);
+    padding: 50px; // Aumentamos el padding interno para mejor tamaño
+    width: 100%;
+    max-width: 460px; // Tamaño ideal para el formato de login
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    position: relative;
+
+    // Detalle decorativo en las esquinas (opcional, estilo Elden)
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        border: 1px solid rgba($color-accent, 0.1);
+        pointer-events: none;
+    }
+
+    &__title {
+        font-family: $font-heading;
+        color: $color-accent;
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 30px;
+        letter-spacing: 3px;
+    }
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Más espacio entre inputs
+
+    &__input {
+        background: #0a0a0a;
+        border: 1px solid rgba($color-accent, 0.4);
+        color: $color-highlight;
+        padding: 14px;
+        font-family: $font-body;
+        font-size: 1rem;
+        transition: border 0.3s ease;
+
+        &:focus {
+            outline: none;
+            border-color: $color-accent;
+            background: #121212;
+        }
+    }
+
+    &__button {
+        background-color: $color-accent;
+        color: #1a1510;
+        border: none;
+        padding: 15px;
+        font-family: $font-heading;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+
+        &:hover {
+            background-color: $color-highlight;
+            letter-spacing: 1px;
+        }
+    }
+}

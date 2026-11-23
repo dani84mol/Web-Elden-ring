@@ -1,0 +1,323 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+@use 'base/reset';
+@use 'components/header';
+@use 'components/footer';
+
+/* ==========================================
+   LAYOUT & HERO
+   ========================================== */
+.page-container {
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    flex: 1;
+    @include desktop { 
+        flex-direction: row; 
+        max-width: 1400px; 
+        margin: 0 auto; 
+        gap: 40px; 
+    }
+}
+
+.hero {
+    text-align: center; 
+    margin-bottom: 30px;
+    @include desktop {
+        flex: 0 0 300px; 
+        text-align: left; 
+        padding: 40px 20px 40px 0;
+        border-right: 1px solid rgba($color-accent, 0.2); 
+        position: sticky; 
+        top: 100px; 
+        height: fit-content; 
+        margin-bottom: 0;
+    }
+    &__title { 
+        font-family: $font-heading; 
+        font-size: 1.8rem; 
+        color: $color-light; 
+        margin-top: 0; 
+        @include desktop { font-size: 2.5rem; } 
+    }
+    &__flavor { font-style: italic; color: $color-flavor; }
+}
+
+/* ==========================================
+   GALLERY GRID & MODALES
+   ========================================== */
+.gallery {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px;
+    @include desktop { 
+        flex: 1; 
+        grid-template-columns: repeat(4, 1fr); 
+        padding-left: 30px; 
+        gap: 15px; 
+    }
+
+    &__item {
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        @include desktop {
+            &:nth-child(9) { grid-column: 1 / 3; justify-self: center; width: 100%; max-width: 220px; }
+            &:nth-child(10) { grid-column: 3 / 5; justify-self: center; width: 100%; max-width: 220px; }
+        }
+    }
+    &__img {
+        width: 100%; 
+        height: auto; 
+        border: 1px solid rgba($color-accent, 0.3);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
+        display: block;
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+        @include desktop {
+            .gallery__item:nth-child(odd) & { transform: rotate(-2deg); }
+            .gallery__item:nth-child(even) & { transform: rotate(2deg); }
+        }
+    }
+    &__link {
+        display: block; 
+        text-decoration: none; 
+        width: 100%;
+        @include desktop {
+            &:hover .gallery__img { 
+                transform: scale(1.1) rotate(0deg) !important; 
+                border-color: $color-light; 
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); 
+                z-index: 10; 
+                position: relative; 
+            }
+        }
+    }
+}
+
+.modal-css {
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); 
+    z-index: 10000;
+    
+    &:target { display: flex; justify-content: center; align-items: center; }
+
+    &__content {
+        background-color: $bg-dark; 
+        border: 1px solid $color-accent; 
+        overflow-y: auto; 
+        position: relative;
+        box-shadow: 0 0 30px rgba($color-accent, 0.2); 
+        width: 95%; 
+        padding: 40px 15px 20px; 
+        max-height: 85vh;
+        
+        @include desktop { width: 90%; max-width: 500px; padding: 35px 25px 25px; max-height: 90vh; }
+        
+        h1, h2, h3, h4 { text-align: center; font-family: $font-heading; }
+
+        // Modificador para el tamaño del modal de la encuesta
+        &--survey {
+            max-width: 700px;
+            padding: 50px 40px;
+            @include mobile {
+                padding: 40px 20px;
+                width: 95%;
+            }
+        }
+    }
+    
+    &__close {
+        position: absolute; 
+        color: $color-accent; 
+        text-decoration: none; 
+        line-height: 1;
+        top: 0; 
+        right: 15px; 
+        font-size: 3rem;
+        @include desktop { top: 5px; right: 10px; font-size: 2.5rem; }
+    }
+    
+    &__img { 
+        width: 100%; 
+        max-height: 45vh; 
+        object-fit: contain; 
+        margin-top: 5px; 
+        border: 1px solid rgba($color-accent, 0.2); 
+    }
+    
+    &__text { 
+        font-size: 0.9rem; 
+        ol { margin-bottom: 8px; padding-left: 15px; } 
+    }
+}
+
+/* ==========================================
+   ENCUESTA (ORÁCULO DE GRACIA)
+   ========================================== */
+.form-clase {
+    margin-top: 30px;
+
+    &__section {
+        margin-bottom: 40px;
+        border-bottom: 1px solid rgba($color-accent, 0.1);
+        padding-bottom: 30px;
+        &:last-of-type { border-bottom: none; }
+    }
+
+    &__question {
+        font-family: $font-heading;
+        color: $color-light;
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 40px;
+        @include mobile { grid-template-columns: 1fr; }
+    }
+
+    &__option {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 0.95rem;
+        color: $color-accent;
+        transition: all 0.2s ease;
+        position: relative;
+
+        input[type="radio"] {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1px solid rgba($color-accent, 0.5);
+            border-radius: 50%;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            display: grid;
+            place-content: center;
+
+            &::before {
+                content: "";
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                transform: scale(0);
+                transition: 0.2s transform ease-in-out;
+                background-color: $color-accent;
+                box-shadow: 0 0 10px $color-accent;
+            }
+
+            &:checked {
+                border-color: $color-light;
+                box-shadow: 0 0 8px rgba($color-accent, 0.5);
+                &::before { transform: scale(1); }
+            }
+        }
+
+        &:hover {
+            color: $color-light;
+            input[type="radio"] { border-color: $color-accent; }
+        }
+    }
+
+    &__footer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    &__submit {
+        background-color: transparent;
+        border: 1px solid rgba($color-accent, 0.5);
+        color: $color-accent;
+        font-family: $font-heading;
+        padding: 12px 35px;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+
+        &:hover {
+            background-color: $color-accent;
+            color: $bg-dark;
+            box-shadow: 0 0 25px rgba($color-accent, 0.4);
+            letter-spacing: 3px;
+        }
+    }
+}
+
+/* Botón del Hero para abrir el Oráculo */
+.btn-encuesta {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    text-decoration: none;
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: rgba($color-accent, 0.1);
+        box-shadow: 0 0 15px rgba($color-accent, 0.3);
+        transform: translateY(-2px);
+    }
+}
+
+.modal-css__header-fav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.fav-btn {
+    text-decoration: none;
+    background: none;
+    border: 1px solid rgba($color-accent, 0.5);
+    color: rgba($color-accent, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .fav-icon {
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    &:hover {
+        border-color: $color-accent;
+        color: $color-accent;
+        box-shadow: 0 0 10px rgba($color-accent, 0.3);
+    }
+
+    &.is-active {
+        background-color: $color-accent;
+        color: $bg-dark;
+        border-color: $color-accent;
+        box-shadow: 0 0 15px $color-accent;
+        
+        &:hover {
+            filter: brightness(1.2);
+        }
+    }
+}

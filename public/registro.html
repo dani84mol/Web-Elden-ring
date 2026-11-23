@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Elden Guide</title>
+
+    <link rel="stylesheet" href="assets/scss/register.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Spectral:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <div class="main-header__logo">
+                <img src="assets/index/Logo Elden Guide.png" alt="Logo Elden Ring Guide">
+                <span>ELDEN GUIDE</span>
+            </div>
+            
+            <ul class="main-header__list">
+                <li><a href="index.html" class="main-header__link">Inicio</a></li>
+                <li><a href="Clases.html" class="main-header__link">Clases</a></li>
+                <li><a href="Jefes.html" class="main-header__link">Jefes</a></li>
+                <li><a href="Zonas.html" class="main-header__link">Zonas</a></li>
+                <li><a href="Consejos.html" class="main-header__link">Consejos</a></li>
+            </ul>
+
+            <div class="main-header__actions">
+                <a href="login.html" class="main-header__link">Login</a>
+                <a href="registro.html" class="main-header__link main-header__link--highlight">Registro</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-container">
+
+        <section class="hero">
+            <h1 class="hero__title">Crear Cuenta</h1>
+            <p class="hero__flavor">"Forja tu destino en las Tierras Intermedias"</p>
+            
+            {{if .Error}}
+            <p class="hero__error">{{.Error}}</p>
+            {{end}}
+        </section>
+
+        <section class="register-container">
+
+            <div class="register-box">
+                <h2 class="register-box__title">Registro</h2>
+
+                <form class="register-form" action="/procesar-registro" method="POST">
+                    
+                    <div class="register-form__group">
+                        <input class="register-form__input" type="text" name="usuario" placeholder="Usuario" 
+                            pattern="^[a-zA-Z0-9_]{3,20}$" 
+                            title="Debe tener entre 3 y 20 caracteres. Solo se permiten letras, números y guiones bajos." 
+                            required>
+                    </div>
+
+                    <div class="register-form__group">
+                        <input class="register-form__input" type="email" name="correo" placeholder="Correo electrónico" 
+                            pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+                            title="Introduce un correo electrónico válido (ejemplo: tunombre@email.com)"
+                            required>
+                    </div>
+
+                    <div class="register-form__group">
+                        <input class="register-form__input" type="password" name="password" placeholder="Contraseña" 
+                            pattern=".{8,}" 
+                            title="La contraseña debe tener al menos 8 caracteres."
+                            required>
+                    </div>
+
+                    <div class="register-form__group">
+                        <input class="register-form__input" type="password" name="confirm_password" placeholder="Confirmar Contraseña" 
+                            pattern=".{8,}"
+                            title="Debe coincidir con la contraseña introducida."
+                            required>
+                    </div>
+
+                    <button class="register-form__button" type="submit">Registrarse</button>
+                </form>
+                <div class="register-extra">
+                    <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p class="main-footer__text">&copy; 2026 - Elden Guide</p>
+    </footer>
+
+</body>
+</html>

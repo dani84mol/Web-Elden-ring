@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elden Ring - Consejos para Principiantes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/scss/Consejos.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <div class="main-header__logo">
+                <img src="assets/index/Logo Elden Guide.png" alt="Logo Elden Ring Guide">
+                <span>ELDEN GUIDE</span>
+            </div>
+            
+            <ul class="main-header__list">
+                <li><a href="index.html" class="main-header__link">Inicio</a></li>
+                <li><a href="Clases.html" class="main-header__link">Clases</a></li>
+                <li><a href="Jefes.html" class="main-header__link">Jefes</a></li>
+                <li><a href="Zonas.html" class="main-header__link">Zonas</a></li>
+            </ul>
+
+            <div class="main-header__actions">
+                {{if .Usuario}}
+                    <span class="main-header__welcome">Hola, <strong>{{.Usuario}}</strong></span>
+                    <a href="/logout" class="main-header__link main-header__link--logout">Salir</a>
+                {{else}}
+                    <a href="login.html" class="main-header__link">Login</a>
+                    <a href="registro.html" class="main-header__link main-header__link--highlight">Registro</a>
+                {{end}}
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        <section class="hero">
+            <article class="hero__content">
+                <h1 class="hero__title">Sabiduría de los Sinluz</h1>
+                <p class="hero__flavor">"Aquel que no aprende de la muerte, está condenado a repetirla."</p>
+                <div class="hero__description">
+                    <p>Las Tierras Intermedias son implacables. Aquí encontrarás estrategias clave para obtener una ventaja temprana y sobrevivir a los desafíos más duros.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="tips-grid">
+            <article class="tip-card">
+                <h2 class="tip-card__title">El Tesoro de Greyoll</h2>
+                <div class="tip-card__body">
+                    <p>En Montedrago, encontrarás un dragón gigante inmóvil. Usa un arma con <strong>sangrado</strong> (como la Uchigatana) para atacar su cola. Al morir, te otorgará 75.000 runas, permitiéndote subir muchos niveles al empezar.</p>
+                </div>
+            </article>
+
+            <article class="tip-card">
+                <h2 class="tip-card__title">Ceniza: Paso del Sabueso</h2>
+                <div class="tip-card__body">
+                    <p>Derrota al Caballero Nocturno en el puente de Montedrago (de noche). Esta habilidad te permite desplazarte rápidamente y ser invulnerable durante el movimiento, ideal para esquivar jefes difíciles.</p>
+                </div>
+            </article>
+
+            <article class="tip-card">
+                <h2 class="tip-card__title">Invocaciones de Espíritus</h2>
+                <div class="tip-card__body">
+                    <p>Vuelve a la Iglesia de Elleh de noche tras conseguir a Torrentera. Habla con Renna para obtener la Campana de Invocación. Las Cenizas de Lobo son excelentes para distraer a los jefes iniciales.</p>
+                </div>
+            </article>
+
+            <article class="tip-card">
+                <h2 class="tip-card__title">El Vigor es Vida</h2>
+                <div class="tip-card__body">
+                    <p>Para un principiante, el atributo más importante es el <strong>Vigor</strong>. Antes de subir fuerza o magia, asegúrate de tener suficiente vida para no morir de un solo golpe frente a los primeros jefes.</p>
+                </div>
+            </article>
+
+            <article class="tip-card">
+                <h2 class="tip-card__title">Frasco de Medicina Milagrosa</h2>
+                <div class="tip-card__body">
+                    <p>Ve a la Tercera Iglesia de Marika en Necrolimbo. Este frasco se puede personalizar con lágrimas que encuentras en los Árboles Áureos pequeños para obtener bufos únicos y potentes.</p>
+                </div>
+            </article>
+
+            <article class="tip-card">
+                <h2 class="tip-card__title">Explora, no te desesperes</h2>
+                <div class="tip-card__body">
+                    <p>Si un jefe como el primer Centinela Agreste te bloquea el paso, simplemente rodéalo. El mundo es abierto; explora otras zonas, sube de nivel y regresa cuando seas más fuerte.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    {{if .Usuario}}
+    <section class="crud-notas">
+        <div class="crud-notas__container">
+            <h2 class="crud-notas__title">Tus Notas de Supervivencia</h2>
+            <p class="crud-notas__desc">Registra aquí tus estrategias privadas, rutas de farmeo o debilidades de jefes descubiertas.</p>
+
+            <div id="notas-app" class="notas-app">
+                <form id="nota-form" class="nota-form">
+                    <input type="hidden" id="nota-id" value="">
+                    <input type="text" id="nota-titulo" class="nota-form__input" placeholder="Título (Ej. Farmeo en Montedrago)" required>
+                    <textarea id="nota-contenido" class="nota-form__textarea" placeholder="Escribe tu estrategia..." required></textarea>
+                    <button type="submit" id="nota-submit" class="nota-form__submit">GUARDAR NOTA</button>
+                </form>
+
+                <div id="notas-list" class="notas-list"></div>
+            </div>
+        </div>
+
+        <template id="nota-template">
+            <article class="nota-card">
+                <h3 class="nota-titulo"></h3>
+                <p class="nota-contenido"></p>
+                <div class="nota-acciones">
+                    <button class="btn-editar">Editar</button>
+                    <button class="btn-eliminar">Eliminar</button>
+                </div>
+            </article>
+        </template>
+    </section>
+
+    <script src="assets/js/api.js"></script>
+    {{end}}
+
+    <footer class="main-footer">
+        <p class="main-footer__text">&copy; 2026 - Elden Guide</p>
+    </footer>
+</body>
+</html>

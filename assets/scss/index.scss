@@ -1,0 +1,87 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+@use 'base/reset';
+@use 'components/header';
+@use 'components/footer';
+/* ==========================================
+   LAYOUT & HERO (INDEX)
+   ========================================== */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex: 1; 
+    @include desktop {
+        flex-direction: row;
+        max-width: 1400px;
+        margin: 0 auto;
+        gap: 40px;
+    }
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 15px;
+    @include desktop {
+        text-align: left;
+        flex: 0 0 350px;
+        position: sticky;
+        top: 100px;
+        border-right: 1px solid rgba($color-accent, 0.2);
+        padding-right: 30px;
+    }
+    &__title {
+        font-family: $font-heading;
+        font-size: 1.5rem;
+        color: $color-highlight;
+        line-height: 1.2;
+        word-wrap: break-word;
+        @include desktop { font-size: 2rem; }
+    }
+    &__flavor { font-size: 0.9rem; color: $color-flavor; margin-bottom: 1rem; }
+    &__description p { font-size: 0.95rem; margin-bottom: 10px; }
+}
+
+/* ==========================================
+   NAVIGATION GRID
+   ========================================== */
+.navigation-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    @include desktop {
+        flex: 1;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px;
+    }
+
+    &__card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba($color-accent, 0.4);
+        transition: transform 0.3s ease;
+
+        &::after {
+            content: attr(data-title);
+            position: absolute;
+            bottom: 15px; left: 20px;
+            font-family: $font-heading; color: $color-light;
+            font-size: 1.1rem; text-shadow: 2px 2px 4px black;
+            z-index: 5; transition: all 0.3s ease;
+            @include desktop { opacity: 0; left: 50%; transform: translateX(-50%); }
+        }
+        &:hover::after { @include desktop { opacity: 1; bottom: 30px; } }
+    }
+
+    &__img {
+        width: 100%; height: 200px; object-fit: cover; display: block;
+        filter: brightness(0.7); transition: all 0.5s ease;
+        @include desktop {
+            height: 300px;
+            .navigation-grid__card:nth-child(odd) & { transform: rotate(-2deg); }
+            .navigation-grid__card:nth-child(even) & { transform: rotate(2deg); }
+        }
+    }
+    &__card:hover &__img { filter: brightness(1.1); transform: scale(1.05) rotate(0deg) !important; }
+}

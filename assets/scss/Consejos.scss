@@ -1,0 +1,195 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+@use 'base/reset';
+@use 'components/header';
+@use 'components/footer';
+
+/* ==========================================
+   LAYOUT & HERO
+   ========================================== */
+.page-container {
+    padding: 20px; display: flex; flex-direction: column;
+    @include desktop { flex-direction: row; max-width: 1400px; margin: 0 auto; gap: 40px; }
+}
+
+.hero {
+    text-align: center; margin-bottom: 20px;
+    @include desktop {
+        flex: 0 0 350px; text-align: left; padding: 40px; border-right: 1px solid rgba($color-accent, 0.2);
+        position: sticky; top: 100px; height: fit-content; margin-bottom: 0;
+    }
+    &__title { font-family: $font-heading; font-size: 1.7rem; color: $color-light; margin-top: 0; @include desktop { font-size: 2rem; } }
+    &__flavor { font-style: italic; color: $color-flavor; margin-bottom: 20px; }
+}
+
+/* ==========================================
+   TIPS GRID
+   ========================================== */
+.tips-grid {
+    display: grid; grid-template-columns: 1fr; gap: 15px; padding: 10px 0;
+    @include desktop { flex: 1; grid-template-columns: repeat(2, 1fr); padding: 40px; gap: 30px; }
+}
+
+.tip-card {
+    background-color: rgba(30, 25, 20, 0.6); border: 1px solid rgba($color-accent, 0.2); border-radius: 6px; 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); padding: 20px; transition: all 0.3s ease;
+    @include desktop {
+        padding: 25px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        &:hover { border-color: $color-accent; transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); }
+    }
+    &__title { font-family: $font-heading; color: $color-light; font-size: 1.2rem; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid rgba($color-accent, 0.2); padding-bottom: 8px; }
+    &__body p {
+        margin: 0; font-size: 1rem; color: $color-accent;
+        strong { color: $color-light; font-weight: bold; text-shadow: 0 0 5px rgba($color-accent, 0.3); }
+    }
+}
+
+/* ==========================================
+   CRUD NOTAS (PEC 3)
+   ========================================== */
+.crud-notas {
+    padding: 40px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid $color-accent;
+    width: 100%;
+
+    &__container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    &__title {
+        text-align: center;
+        font-family: $font-heading;
+        color: $color-accent;
+    }
+
+    &__desc {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}
+
+.notas-app {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.nota-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+
+    &__input, &__textarea {
+        padding: 15px;
+        background: #0f0c08;
+        color: $color-accent;
+        border: 1px solid rgba($color-accent, 0.3);
+        font-family: $font-body;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+
+        &:focus {
+            outline: none;
+            border-color: $color-accent;
+            box-shadow: 0 0 10px rgba($color-accent, 0.2);
+        }
+    }
+
+    &__textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    &__submit {
+        padding: 15px;
+        background: $color-accent;
+        color: $bg-dark;
+        font-family: $font-heading;
+        font-weight: bold;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid $color-accent;
+        margin-top: 10px;
+
+        &:hover {
+            background: transparent;
+            color: $color-accent;
+            box-shadow: 0 0 15px rgba($color-accent, 0.4);
+        }
+    }
+}
+
+.notas-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.nota-card {
+    padding: 25px;
+    border: 1px solid rgba($color-accent, 0.4);
+    background: rgba(30, 25, 20, 0.6);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+
+    &:hover {
+        border-color: $color-accent;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.nota-titulo {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: $color-light;
+    font-family: $font-heading;
+    font-size: 1.3rem;
+    border-bottom: 1px solid rgba($color-accent, 0.2);
+    padding-bottom: 10px;
+}
+
+.nota-contenido {
+    color: $color-accent;
+    font-size: 1rem;
+    white-space: pre-wrap;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.nota-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    border-top: 1px solid rgba($color-accent, 0.1);
+    padding-top: 15px;
+}
+
+.btn-editar, .btn-eliminar {
+    background: transparent;
+    cursor: pointer;
+    padding: 8px 20px;
+    font-family: $font-heading;
+    transition: all 0.3s;
+}
+
+.btn-editar {
+    border: 1px solid $color-accent;
+    color: $color-accent;
+    &:hover {
+        background: $color-accent;
+        color: $bg-dark;
+    }
+}
+
+.btn-eliminar {
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    &:hover {
+        background: #ff4d4d;
+        color: $bg-dark;
+    }
+}

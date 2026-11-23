@@ -1,0 +1,198 @@
+/* 1. IMPORTACIONES OBLIGATORIAS (Siempre arriba) */
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+@use 'base/reset';
+@use 'components/header';
+@use 'components/footer';
+
+/* REUTILIZACIÓN DE LAYOUT 
+   Utilizamos las mismas clases que en login.scss para mantener la estructura 
+   de "Hero a la izquierda" y "Formulario a la derecha".
+*/
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex: 1;
+
+    @include desktop {
+        flex-direction: row;
+        max-width: 1400px;
+        margin: 0 auto;
+        gap: 40px;
+    }
+}
+
+/* ESTILOS ESPECÍFICOS DEL REGISTRO */
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 15px;
+
+    @include desktop {
+        text-align: left;
+        flex: 0 0 350px;
+        position: sticky;
+        top: 100px;
+        border-right: 1px solid rgba($color-accent, 0.2);
+        padding-right: 30px;
+    }
+
+    &__title {
+        font-family: $font-heading;
+        font-size: 1.5rem;
+        color: $color-highlight;
+
+        @include desktop {
+            font-size: 2rem;
+        }
+    }
+
+    &__flavor {
+        color: $color-flavor;
+        font-style: italic;
+    }
+
+    &__error {
+        margin-top: 30px;
+        padding: 15px 20px;
+        font-family: $font-body;
+        font-size: 0.95rem;
+        color: $color-highlight;
+        
+        // Fondo oscuro tipo pergamino/interfaz
+        background: linear-gradient(90deg, transparent 0%, $color-error-bg 50%, transparent 100%);
+        border-top: 1px solid rgba($color-error, 0.5);
+        border-bottom: 1px solid rgba($color-error, 0.5);
+        
+        text-align: center;
+        position: relative;
+        animation: fadeInError 0.5s ease-out;
+
+        // Decoración tipo "runa" o puntos en los extremos
+        &::before, &::after {
+            content: "◆";
+            color: $color-error;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7rem;
+            text-shadow: 0 0 5px $color-error;
+        }
+
+        &::before { left: 10px; }
+        &::after { right: 10px; }
+
+        // Responsividad: Ajuste de tamaño en móviles
+        @include mobile {
+            font-size: 0.85rem;
+            margin-top: 20px;
+            padding: 12px 15px;
+            background: $color-error-bg; // Fondo sólido en móvil para legibilidad
+        }
+    }
+}
+
+@keyframes fadeInError {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* CONTENEDOR DE FORMULARIO DE REGISTRO */
+.register-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-box {
+    background-color: rgba(0, 0, 0, 0.7); // Un poco más oscuro para diferenciar
+    border: 1px solid rgba($color-accent, 0.4);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px; // Ligeramente más ancho que el login por tener más campos
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba($color-accent, 0.1);
+
+    &__title {
+        font-family: $font-heading;
+        color: $color-light;
+        text-align: center;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+    }
+}
+
+/* FORMULARIO ESTILO ELDEN */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    &__input {
+        background-color: #0f0c08;
+        border: 1px solid rgba($color-accent, 0.3);
+        color: $color-accent;
+        padding: 12px;
+        font-family: $font-body;
+        transition: all 0.3s ease;
+
+        &::placeholder {
+            color: rgba($color-flavor, 0.6);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $color-accent;
+            box-shadow: 0 0 12px rgba($color-accent, 0.4);
+            background-color: #1a1510;
+        }
+    }
+
+    &__button {
+        background-color: $color-accent;
+        color: #1a1510;
+        border: 1px solid $color-accent;
+        padding: 12px;
+        font-family: $font-heading;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: transparent;
+            color: $color-accent;
+            box-shadow: 0 0 15px $color-accent;
+        }
+    }
+}
+
+/* ENLACE DE RETORNO AL LOGIN */
+.register-extra {
+    text-align: center;
+    margin-top: 20px;
+    font-family: $font-body;
+    color: $color-light;
+
+    a {
+        color: $color-accent;
+        text-decoration: none;
+        font-weight: bold;
+        border-bottom: 1px solid transparent;
+        transition: border 0.3s ease;
+
+        &:hover {
+            border-bottom: 1px solid $color-accent;
+            text-shadow: 0 0 8px rgba($color-accent, 0.6);
+        }
+    }
+}

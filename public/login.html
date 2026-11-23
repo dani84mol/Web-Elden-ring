@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Elden Guide</title>
+    <link rel="stylesheet" href="assets/scss/login.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <div class="main-header__logo">
+                <img src="assets/index/Logo Elden Guide.png" alt="Logo Elden Ring Guide">
+                <span>ELDEN GUIDE</span>
+            </div>
+            
+            <ul class="main-header__list">
+                <li><a href="index.html" class="main-header__link">Inicio</a></li>
+                <li><a href="Clases.html" class="main-header__link">Clases</a></li>
+                <li><a href="Jefes.html" class="main-header__link">Jefes</a></li>
+                <li><a href="Zonas.html" class="main-header__link">Zonas</a></li>
+                <li><a href="Consejos.html" class="main-header__link">Consejos</a></li>
+            </ul>
+
+            <div class="main-header__actions">
+                <a href="login.html" class="main-header__link">Login</a>
+                <a href="registro.html" class="main-header__link main-header__link--highlight">Registro</a>
+            </div>
+        </nav>
+    </header>
+
+
+<main class="page-container">
+
+    <!-- IZQUIERDA -->
+    <section class="hero">
+        <h1 class="hero__title">Iniciar Sesión</h1>
+        <p class="hero__flavor">"Regresa, Sinluz…"</p>
+
+        <!-- ERROR DINÁMICO -->
+        {{if .Error}}
+        <p class="hero__error">{{.Error}}</p>
+        {{end}}
+    </section>
+
+    <!-- DERECHA -->
+    <section class="login-container">
+        <div class="login-box">
+
+            <h2 class="login-box__title">Login</h2>
+
+            <form class="login-form" action="/procesar-login" method="POST">
+                <input class="login-form__input" name="usuario" placeholder="Usuario">
+                <input class="login-form__input" type="password" name="password" placeholder="Contraseña">
+                <button class="login-form__button">Entrar</button>
+            </form>
+
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>

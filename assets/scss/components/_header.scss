@@ -1,0 +1,143 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.main-header {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-bottom: 1px solid rgba($color-accent, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 15px; 
+    
+    @include desktop { padding: 15px 40px; }
+
+    &__nav {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        gap: 10px;
+
+        @include desktop {
+            flex-direction: row; 
+            justify-content: space-between; 
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 60px;
+            position: relative; // Importante para centrar la lista respecto al nav
+        }
+    }
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 10;
+        text-decoration: none;
+
+        img {
+            width: 35px; height: 35px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px rgba($color-accent, 0.5));
+            @include desktop { width: 45px; height: 45px; }
+        }
+
+        span {
+            font-family: $font-heading;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            background: linear-gradient(to bottom, $color-light, $color-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            @include desktop { font-size: 1.2rem; }
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 12px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        @include desktop {
+            position: absolute; // Centrado absoluto
+            left: 50%;
+            transform: translateX(-50%);
+            gap: 30px;
+        }
+    }
+
+    // Contenedor para Login y Registro
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        z-index: 10;
+
+        @include desktop {
+            margin-left: auto; // Empuja el grupo a la derecha
+        }
+    }
+
+    &__link {
+        color: $color-accent;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 0.75rem; 
+        font-weight: bold;
+        letter-spacing: 1.5px;
+        transition: all 0.3s ease;
+        position: relative;
+
+        @include desktop { font-size: 0.85rem; }
+
+        &:hover { color: $color-light; text-shadow: 0 0 10px $color-accent; }
+
+        @include desktop {
+            &::after {
+                content: '';
+                position: absolute;
+                width: 0; height: 1px;
+                bottom: -5px; left: 50%;
+                background-color: $color-accent;
+                transition: all 0.3s ease;
+                transform: translateX(-50%);
+            }
+            &:hover::after { width: 100%; }
+        }
+
+        // Estilo especial para el botón de Registro
+        &--highlight {
+            border: 1px solid $color-accent;
+            padding: 5px 12px;
+            border-radius: 4px;
+            &:hover { background-color: rgba($color-accent, 0.1); }
+            &::after { display: none; }
+        }
+        
+        &--logout {
+            color: #ff4d4d; // Un tono rojizo para indicar salida
+            &:hover {
+                color: #ff1a1a;
+                text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+            }
+            &::after {
+                background-color: #ff4d4d; // Línea inferior roja en hover
+            }
+        }
+    }
+
+    &__welcome {
+        color: $color-light;
+        font-size: 0.85rem;
+        margin-right: 10px;
+        
+        strong {
+            color: $color-accent;
+        }
+    }
+
+}
